@@ -1,0 +1,383 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+}
+
+:root {
+  --create-button: rgb(18, 211, 63);
+  --create-button-hover: rgb(0, 179, 42);
+  --delete-button: rgb(176, 20, 20);
+  --font-color: rgb(40, 40, 40);
+  --font-color-background: rgb(255, 255, 255);
+  --border-color: rgb(200, 200, 200);
+  --not-started: rgb(150, 150, 150);
+  --in-process: rgb(239, 207, 21);
+  --done: rgb(85, 211, 18);
+  --cancelled: rgb(193, 48, 0);
+  --background1: rgb(240, 240, 240);
+  --background2: rgba(240, 240, 240, 0.5);
+  --background3: rgb(245, 245, 245);
+  --button-grey: rgb(230, 230, 230);
+  --button-grey-hover: rgb(200, 200, 200);
+}
+
+main #newTask form .rows #addFile button, main nav .navContainer #search .nav button {
+  display: inline-block;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--create-button);
+  color: var(--font-color-background);
+  cursor: pointer;
+  transition: 0.4s;
+}
+main #newTask form .rows #addFile button:hover, main nav .navContainer #search .nav button:hover {
+  background-color: var(--create-button-hover);
+}
+
+main .warning .warningBox button, main .editTask .editTaskBox form #edit10 button {
+  padding: 5px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-grey);
+  font-size: 14px;
+  transition: 0.4s;
+}
+main .warning .warningBox button:hover, main .editTask .editTaskBox form #edit10 button:hover {
+  background-color: var(--button-grey-hover);
+}
+
+main #newTask form .rows textarea, main #newTask form .rows div input, main #newTask form .rows select, main .editTask .editTaskBox form ul li select, main .editTask .editTaskBox form ul li textarea, main .editTask .editTaskBox form ul li input, main nav .navContainer #search .nav div input {
+  padding: 10px 20px;
+  color: var(--font-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+main .warning, main #newTask, main .editTask {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background-color: var(--background2);
+  height: 100%;
+  width: 100%;
+  transform: translate(0, -200%);
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+main #newTask form #close, main .editTask .editTaskBox .close {
+  position: absolute;
+  border: none;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+main .warning .warningBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 0 8px 0 var(--border-color);
+  min-width: 380px;
+  min-height: 160px;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none;
+  height: 0;
+}
+
+.active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+.dropActive {
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+}
+
+.anotStarted {
+  background-color: var(--not-started);
+  color: var(--font-color-background);
+}
+
+.cinProcess {
+  background-color: var(--in-process);
+  color: var(--font-color-background);
+}
+
+.bcancelled {
+  background-color: var(--cancelled);
+  color: var(--font-color-background);
+}
+
+.done {
+  background-color: var(--done);
+  color: var(--font-color-background);
+}
+
+main {
+  position: relative;
+  height: 100vh;
+}
+main nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--background1);
+  z-index: 9999;
+}
+main nav .navContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  width: 100%;
+}
+main nav .navContainer #search .nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+main nav .navContainer #search .nav div {
+  position: relative;
+}
+main nav .navContainer #search .nav div label {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: var(--font-color);
+  font-size: 12px;
+}
+main .editTask {
+  z-index: 99998;
+}
+main .editTask .editTaskBox {
+  display: flex;
+  position: relative;
+  width: 600px;
+  padding: 80px 40px 20px;
+  background-color: var(--background1);
+  box-shadow: 0 0 8px 0 var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+}
+main .editTask .editTaskBox form {
+  width: 100%;
+}
+main .editTask .editTaskBox form ul {
+  width: 100%;
+}
+main .editTask .editTaskBox form ul li {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4px;
+}
+main .editTask .editTaskBox form ul li textarea {
+  width: 300px;
+  height: 80px;
+}
+main .editTask .editTaskBox form #edit10 {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+}
+main #newTask {
+  z-index: 9999;
+}
+main #newTask form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 40px;
+  background-color: var(--background1);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: 0 0 8px 0 var(--border-color);
+}
+main #newTask form p {
+  color: var(--font-color);
+}
+main #newTask form .rows {
+  display: grid;
+  text-align: center;
+  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 40px;
+  width: 100%;
+}
+main #newTask form .rows div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+main #newTask form .rows div label {
+  cursor: pointer;
+}
+main #newTask form .rows textarea {
+  height: 100px;
+}
+main #newTask form .rows #addFile {
+  align-items: end;
+}
+main .warning {
+  z-index: 99999;
+}
+main .tableContainer {
+  position: relative;
+  max-width: 1280px;
+}
+main .tableContainer .table {
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 5px 0 var(--border-color);
+  border-radius: 4px;
+}
+main .tableContainer .table .head {
+  display: grid;
+  text-align: center;
+  grid-template-columns: 3% 10% 15% 50% 15% 7%;
+}
+main .tableContainer .table .head #sortOptions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+main .tableContainer .table .head #sortOptions .sortOptions {
+  border: none;
+  outline: none;
+  width: 50%;
+  cursor: pointer;
+}
+main .tableContainer .table .head #sortOptions #sortButton {
+  cursor: pointer;
+  padding: 5px 20px;
+  border: none;
+  background-color: var(--button-grey);
+}
+main .tableContainer .table .head #sortOptions #sortButton:hover {
+  background-color: var(--button-grey-hover);
+}
+main .tableContainer .table .head div {
+  border: 1px solid var(--border-color);
+  padding: 5px;
+}
+main .tableContainer .table .head .buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0;
+  align-items: center;
+}
+main .tableContainer .table .head .buttons .button2 {
+  height: 100%;
+  padding: 5px;
+  background-color: var(--create-button-hover);
+}
+main .tableContainer .table .head .buttons .button2 .bi {
+  color: var(--font-color-background);
+}
+main .tableContainer .table .head .buttons .button3 {
+  cursor: pointer;
+  height: 100%;
+  padding: 5px;
+  background-color: var(--delete-button);
+}
+main .tableContainer .table .head .buttons .button3 .bi {
+  color: var(--font-color-background);
+}
+main .tableContainer .table .body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+main .tableContainer .table .body .row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 3% 10% 15% 50% 15% 7%;
+}
+main .tableContainer .table .body .row .dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .tableContainer .table .body .row .dropdown-button button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+main .tableContainer .table .body .row .buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0;
+  align-items: center;
+  cursor: pointer;
+}
+main .tableContainer .table .body .row .buttons .button2 {
+  text-align: center;
+  height: 100%;
+  padding: 5px;
+  background-color: var(--create-button-hover);
+}
+main .tableContainer .table .body .row .buttons .button2 .bi {
+  color: var(--font-color-background);
+}
+main .tableContainer .table .body .row .buttons .button3 {
+  text-align: center;
+  height: 100%;
+  padding: 5px;
+  background-color: var(--delete-button);
+}
+main .tableContainer .table .body .row .buttons .button3 .bi {
+  color: var(--font-color-background);
+}
+main .tableContainer .table .body .row div {
+  text-align: left;
+  border: 1px solid var(--border-color);
+  padding: 5px;
+}
+main .tableContainer .table .body .dropdown {
+  position: absolute;
+  padding: 8px;
+  width: 100%;
+  background-color: var(--background3);
+  border: 1px solid var(--border-color);
+  visibility: hidden;
+  opacity: 0;
+  overflow: scroll;
+  transition: opacity 0.3s;
+}/*# sourceMappingURL=style.css.map */

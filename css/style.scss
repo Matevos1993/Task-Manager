@@ -1,0 +1,425 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+}
+
+:root {
+  --create-button: rgb(18, 211, 63);
+  --create-button-hover: rgb(0, 179, 42);
+  --delete-button: rgb(176, 20, 20);
+  --font-color: rgb(40, 40, 40);
+  --font-color-background: rgb(255, 255, 255);
+  --border-color: rgb(200, 200, 200);
+  --not-started: rgb(150, 150, 150);
+  --in-process: rgb(239, 207, 21);
+  --done: rgb(85, 211, 18);
+  --cancelled: rgb(193, 48, 0);
+  --background1: rgb(240, 240, 240);
+  --background2: rgba(240, 240, 240, 0.5);
+  --background3: rgb(245, 245, 245);
+  --button-grey: rgb(230, 230, 230);
+  --button-grey-hover: rgb(200, 200, 200);
+}
+
+%button {
+  display: inline-block;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--create-button);
+  color: var(--font-color-background);
+  cursor: pointer;
+  transition: 0.4s;
+  &:hover {
+    background-color: var(--create-button-hover);
+  }
+}
+
+%button2 {
+  padding: 5px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-grey);
+  font-size: 14px;
+  transition: 0.4s;
+  &:hover {
+    background-color: var(--button-grey-hover);
+  }
+}
+
+%input {
+  padding: 10px 20px;
+  color: var(--font-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+%box {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background-color: var(--background2);
+  height: 100%;
+  width: 100%;
+  transform: translate(0, -200%);
+  transition: .5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+%close {
+  position: absolute;
+  border: none;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+%warnSearch{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 0 8px 0 var(--border-color);
+  min-width: 380px;
+  min-height: 160px;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.hidden{
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none;
+  height: 0;
+}
+
+.active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+.dropActive {
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+}
+
+.anotStarted {
+  background-color: var(--not-started);
+  color: var(--font-color-background);
+}
+
+.cinProcess {
+  background-color: var(--in-process);
+  color: var(--font-color-background);
+}
+
+.bcancelled {
+  background-color: var(--cancelled);
+  color: var(--font-color-background);
+}
+
+.done {
+  background-color: var(--done);
+  color: var(--font-color-background);
+}
+
+main {
+  position: relative;
+  height: 100vh;
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--background1);
+    z-index: 9999;
+    .navContainer {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      width: 100%;
+      #search .nav {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        div {
+          position: relative;
+          label {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translate(0, -50%);
+            color: var(--font-color);
+            font-size: 12px;
+          }
+          input {
+            @extend %input;
+          }
+        }
+        button {
+          @extend %button;
+        }
+      }
+    }
+  }
+  .editTask {
+    @extend %box;
+    z-index: 99998;
+    .editTaskBox {
+      display: flex;
+      position: relative;
+      width: 600px;
+      padding: 80px 40px 20px;
+      background-color: var(--background1);
+      box-shadow: 0 0 8px 0 var(--border-color);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      .close {
+        @extend %close;
+      }
+      form {
+        width: 100%;
+        ul {
+          width: 100%;
+          li {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 4px;
+            input {
+              @extend %input;
+            }
+            textarea {
+              @extend %input;
+              width: 300px;
+              height: 80px;
+            }
+            select {
+              @extend %input;
+            }
+          }
+        }
+        #edit10 {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          padding: 12px;
+          button {
+            @extend %button2;
+          }
+        }
+      }
+    }
+  }
+  #newTask {
+    @extend %box;
+    z-index: 9999;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding: 40px;
+      background-color: var(--background1);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      box-shadow: 0 0 8px 0 var(--border-color);
+      #close {
+        @extend %close;
+      }
+      p {
+        color: var(--font-color);
+      }
+      .rows {
+        display: grid;
+        text-align: center;
+        gap: 40px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 40px;
+        width: 100%;
+        select {
+          @extend %input;
+        }
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+          input {
+            @extend %input;
+          }
+          label {
+            cursor: pointer;
+          }
+        }
+        textarea {
+          @extend %input;
+          height: 100px;
+        }
+        #addFile {
+          align-items: end;
+
+          button {
+            @extend %button;
+          }
+        }
+      }
+    }
+  }
+  .warning {
+    @extend %box;
+    z-index: 99999;
+    .warningBox {
+      @extend %warnSearch;
+      button {
+        @extend %button2;
+      }
+    }
+  }
+  .tableContainer {
+    position: relative;
+    max-width: 1280px;
+    .table {
+      position: absolute;
+      width: 100%;
+      top: 100px;
+      border-collapse: collapse;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 0 5px 0 var(--border-color);
+      border-radius: 4px;
+      .head {
+        display: grid;
+        text-align: center;
+        grid-template-columns: 3% 10% 15% 50% 15% 7%;
+        #sortOptions {
+          display: flex;
+          justify-content: space-between;
+          padding: 0;
+          .sortOptions {
+            border: none;
+            outline: none;
+            width: 50%;
+            cursor: pointer;
+          }
+          #sortButton {
+            cursor: pointer;
+            padding: 5px 20px;
+            border: none;
+            background-color: var(--button-grey);
+            &:hover {
+              background-color: var(--button-grey-hover);
+            }
+          }
+        }
+        div {
+          border: 1px solid var(--border-color);
+          padding: 5px;
+        }
+        .buttons {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          padding: 0;
+          align-items: center;
+          .button2 {
+            height: 100%;
+            padding: 5px;
+            background-color: var(--create-button-hover);
+            .bi {
+              color: var(--font-color-background);
+            }
+          }
+          .button3 {
+            cursor: pointer;
+            height: 100%;
+            padding: 5px;
+            background-color: var(--delete-button);
+            .bi {
+              color: var(--font-color-background);
+            }
+          }
+        }
+      }
+      .body {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        .row {
+          display: grid;
+          width: 100%;
+          grid-template-columns: 3% 10% 15% 50% 15% 7%;
+          .dropdown-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button {
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+            }
+          }
+          .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 0;
+            align-items: center;
+            cursor: pointer;
+            .button2 {
+              text-align: center;
+              height: 100%;
+              padding: 5px;
+              background-color: var(--create-button-hover);
+              .bi {
+                color: var(--font-color-background);
+              }
+            }
+            .button3 {
+              text-align: center;
+              height: 100%;
+              padding: 5px;
+              background-color: var(--delete-button);
+              .bi {
+                color: var(--font-color-background);
+              }
+            }
+          }
+          div {
+            text-align: left;
+            border: 1px solid var(--border-color);
+            padding: 5px;
+          }
+        }
+        .dropdown {
+          position: absolute;
+          padding: 8px;
+          width: 100%;
+          background-color: var(--background3);
+          border: 1px solid var(--border-color);
+          visibility: hidden;
+          opacity: 0;
+          overflow: scroll;
+          transition: opacity 0.3s;
+        }
+      }
+    }
+  }
+}

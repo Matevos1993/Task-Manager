@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <script defer src="./js/script.js"></script>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <div class="container navContainer">
+          <div id="search">
+            <div class="nav">
+              <div>
+                <label for="searchInput"><i class="bi bi-search"></i></label>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search tasks" />
+              </div>
+              <button id="addTask">
+                <i class="bi bi-plus-square"></i> Add New Task
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section class="warning" id="warning">
+        <div class="container">
+          <div class="warningBox">
+          </div>
+        </div>
+      </section>
+      <section id="newTask">
+        <div class="container">
+          <form action="">
+            <button id="close"><i class="bi bi-x-lg"></i></button>
+            <div class="rows">
+              <div>
+                <div>
+                  <p>Title</p>
+                  <input type="text" placeholder="Enter task title" required />
+                </div>
+                <div>
+                  <select name="" id="" class="pointer" required>
+                    <option value="" hidden>Select Status</option>
+                    <option value="Not started" class="anotStarted">
+                      Not Started
+                    </option>
+                    <option value="In process" class="cinProcess">
+                      In Progress
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Start Date</p>
+                  <input type="date" required />
+                </div>
+                <div>
+                  <p>End Date</p>
+                  <input type="date" />
+                </div>
+              </div>
+            </div>
+            <div class="rows">
+              <div>
+                <div>
+                  <p>Description</p>
+                  <input type="text" required />
+                </div>
+                <div>
+                  <p>Address</p>
+                  <input type="text" />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Mobile</p>
+                  <input type="text" />
+                </div>
+                <div>
+                  <p>Email</p>
+                  <input type="email" />
+                </div>
+              </div>
+            </div>
+            <div class="rows">
+              <textarea name="" id="" placeholder="Add a comment"></textarea>
+              <div id="addFile">
+                <input type="file" class="pointer" />
+                <button><i class="bi bi-plus-square"></i> Add New Task</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section class="editTask" id="editTask">
+        <div class="container">
+          <div class="editTaskBox">
+            <button class="close" id="editTaskClose">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <form action="">
+              <ul>
+                <li>
+                  <label for="1">Title</label>
+                  <input type="text" id="1" />
+                </li>
+                <li>
+                  <label for="2">Task Description</label>
+                  <input type="text" id="2" />
+                </li>
+                <li>
+                  <label for="3">End Date</label>
+                  <input type="date" id="3" />
+                </li>
+                <li>
+                  <label for="4">Status</label>
+                  <select name="" id="4" class="pointer" required>
+                    <option value="Status" hidden>Select Status</option>
+                    <option value="In process" class="cinProcess">
+                      In Progress
+                    </option>
+                    <option value="Cancelled" class="bcancelled">
+                      Cancelled
+                    </option>
+                    <option value="Done" class="done">Completed</option>
+                  </select>
+                </li>
+                <li>
+                  <label for="5">Address</label>
+                  <input type="text" id="5" />
+                </li>
+                <li>
+                  <label for="6">Mobile</label>
+                  <input type="text" id="6" />
+                </li>
+                <li>
+                  <label for="7">Email</label>
+                  <input type="email" id="7" />
+                </li>
+                <li>
+                  <label for="8">Attach Files</label>
+                  <input type="file" id="8" />
+                </li>
+                <li>
+                  <label for="9">Add a Comment</label>
+                  <textarea name="" id="9"></textarea>
+                </li>
+              </ul>
+              <div id="edit10">
+                <button id="editTaskBtn">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="tableContainer container">
+          <div class="table" id="table">
+            <div class="head">
+              <div></div>
+              <div><p>Status</p></div>
+              <div><p>Title</p></div>
+              <div><p>Task Description</p></div>
+              <div id="sortOptions">
+                <select class="sortOptions">
+                  <option value="">Sort By</option>
+                  <option value="title">Title</option>
+                  <option value="status">Status</option>
+                  <option value="startDate">Start Date</option>
+                  <option value="endDate">End Date</option>
+                </select>
+                <button id="sortButton">Sort</button>
+              </div>
+              <div class="buttons">
+                <span class="button2"><i class="bi bi-pencil-square"></i></span>
+                <span class="button3" id="deleteAll"><i class="bi bi-trash"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="xxx">
+        <input type="text">
+        <div class="warnText">
+          <span>Search</span>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
