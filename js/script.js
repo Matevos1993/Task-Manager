@@ -24,8 +24,8 @@ const taskObjTemplate = {
   title: "",
   status: null,
   statusClass: null,
-  startDate: new Date().toISOString().split('T')[0], // Today's date
-  endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0], // One year from today
+  startDate: new Date().toISOString().split('T')[0],
+  endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
   task: "",
   address: "",
   mobile: "",
@@ -36,10 +36,8 @@ const taskObjTemplate = {
   meinId: null,
 };
 
-// Event Handlers
 addTask.onclick = () => {
   newTask.classList.add("active");
-  // Pre-fill dates with default values
   const startDateInput = form.querySelector('input[type="date"]');
   const endDateInput = form.querySelectorAll('input[type="date"]')[1];
   
@@ -89,8 +87,8 @@ form.addEventListener("submit", (e) => {
   taskObj.id = Date.now();
   taskObj.title = getInputValue(1);
   taskObj.status = getInputValue(2);
-  taskObj.startDate = getInputValue(3) || taskObjTemplate.startDate; // Use default if not provided
-  taskObj.endDate = getInputValue(4) || taskObjTemplate.endDate; // Use default if not provided
+  taskObj.startDate = getInputValue(3) || taskObjTemplate.startDate;
+  taskObj.endDate = getInputValue(4) || taskObjTemplate.endDate;
   taskObj.task = getInputValue(5);
   taskObj.address = getInputValue(6);
   taskObj.mobile = getInputValue(7);
